@@ -1,6 +1,6 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
-async () => {
+(async () => {
   try {
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core.getInput("who-to-greet");
@@ -13,4 +13,4 @@ async () => {
   } catch (error) {
     core.setFailed(error.message);
   }
-};
+})()
