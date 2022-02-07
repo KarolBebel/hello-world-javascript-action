@@ -5,7 +5,9 @@ try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
 
-  console.log(nameToGreet)
+  let content = await fs.readFile(nameToGreet, 'utf8')
+
+  console.log(content)
 
   core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
