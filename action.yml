@@ -1,13 +1,24 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Prototype validator'
+description: 'tbd'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  token:
+    description: >
+      GitHub token for GitHub API requests.
+      Users shouldn't need to set this themselves.
     required: true
-    default: 'World'
+    default: ${{ github.token }}
+  data-source-config:
+    description: 'tbd'
+    required: true
+  data-type-config:
+    description: 'tbd'
+    required: true
+  box-config:
+    description: 'tbd'
+    required: true
 outputs:
   time: # id of output
     description: 'The time we greeted you'
 runs:
   using: 'node16'
-  main: 'index.js'
+  main: 'dist/index.js'
