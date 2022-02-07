@@ -6,9 +6,11 @@ async function main () {
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core.getInput("who-to-greet");
 
-    let content = await fs.readFile(nameToGreet, "utf8");
+    console.log(nameToGreet)
 
-    console.log(content);
+    let rawdata = fs.readFileSync(nameToGreet);
+
+    console.log(rawdata);
 
     // Get the JSON webhook payload for the event that triggered the workflow
   } catch (error) {
