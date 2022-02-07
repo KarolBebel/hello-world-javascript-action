@@ -10,7 +10,7 @@ async function main () {
 
     let rawdata = fs.readFileSync(nameToGreet);
     let json = JSON.parse(rawdata);
-    console.log(json);
+    console.log(json.slots);
     // Get the JSON webhook payload for the event that triggered the workflow
   } catch (error) {
     core.setFailed(error.message);
