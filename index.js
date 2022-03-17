@@ -8361,8 +8361,6 @@ core.info("Head commit: " + head);
             var jsonFile = (0, getFile_1.getFile)(file);
             var config = (0, getConfig_1.getProperConfig)(jsonFile);
             var fileResult = (0, parseFile_1.parseFile)(jsonFile, config);
-            console.log(fileResult);
-            console.log(Object.keys(fileResult));
             if (Object.keys(fileResult).length !== 0) {
                 isValid = false;
             }
@@ -8372,7 +8370,7 @@ core.info("Head commit: " + head);
             console.log("\u001b[32m", 'Everything looks fine', "\u001b[91m");
         }
         else {
-            core.setFailed("\u001b[31m", JSON.stringify(result, null, 4), "\u001b[91m");
+            console.log("\u001b[31m", JSON.stringify(result, null, 4), "\u001b[91m");
             process.exit(1);
         }
     }
