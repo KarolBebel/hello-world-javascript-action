@@ -8349,6 +8349,7 @@ var getFile_1 = __nccwpck_require__(7576);
 var changedFiles_1 = __nccwpck_require__(4754);
 var token = core.getInput('token', { required: true });
 var context = github.context;
+var isValid = true;
 var base = context.payload.before;
 var head = context.payload.after;
 core.info("Base commit: " + base);
@@ -8360,9 +8361,18 @@ core.info("Head commit: " + head);
             var jsonFile = (0, getFile_1.getFile)(file);
             var config = (0, getConfig_1.getProperConfig)(jsonFile);
             var fileResult = (0, parseFile_1.parseFile)(jsonFile, config);
+            if (Object.keys(fileResult).length !== 0) {
+                isValid = false;
+            }
             result["" + file] = fileResult;
         });
-        console.log("\x1b[31m", JSON.stringify(result, null, 4));
+        if (isValid) {
+            core.setFailed("\u001b[31m", JSON.stringify(result, null, 4), "\u001b[91m");
+            process.exit(1);
+        }
+        else {
+            console.log("\u001b[32m", 'Everything looks fine', "\u001b[91m");
+        }
     }
     var filesArray;
     return __generator(this, function (_a) {
@@ -8370,7 +8380,6 @@ core.info("Head commit: " + head);
             case 0: return [4 /*yield*/, (0, changedFiles_1.changedFiles)(github.getOctokit(token), context.repo.owner, context.repo.repo, base, head)];
             case 1:
                 filesArray = _a.sent();
-                console.log(filesArray);
                 validate();
                 return [2 /*return*/];
         }
