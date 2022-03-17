@@ -8361,6 +8361,8 @@ core.info("Head commit: " + head);
             var jsonFile = (0, getFile_1.getFile)(file);
             var config = (0, getConfig_1.getProperConfig)(jsonFile);
             var fileResult = (0, parseFile_1.parseFile)(jsonFile, config);
+            console.log(fileResult);
+            console.log(Object.keys(fileResult));
             if (Object.keys(fileResult).length !== 0) {
                 isValid = false;
             }
